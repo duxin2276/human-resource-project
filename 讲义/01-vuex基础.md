@@ -454,7 +454,7 @@ const store  = new Vuex.Store({
 
 ```js
 test () {
-   this.$store.dispatch('user/updateToken') // 直接调用方法
+   this.$store.commit('user/updateToken') // 直接调用方法
 }
 ```
 
@@ -552,11 +552,11 @@ import './styles/index.css'
     </div>
 ```
 
-## vuex案例-封装分类组件和频道组件
+## vuex案例-封装分类组件和列表组件
 
 为了更好的区分组件之间的职责，我们将上方的频道和下方的列表封装成不同的组件
 
-**`components/catagtory.vue`**
+**`components/categtory.vue`**
 
 ```vue
 <template>    
@@ -659,7 +659,7 @@ $ npm i axios
 
 > 我们采用模块化的管理模式，建立一个专门的模块来管理分类和新闻数据
 
-**在store目录下新建目录modules， 新建 catagtory.js和newlist.js**
+**在store目录下新建目录modules， 新建 categtory.js和newlist.js**
 
 **模块结构**
 
@@ -675,7 +675,7 @@ export default {
 **在store/index.js中引入定义的两个模块**
 
 ```js
-import catagtory from './modules/catagtory'
+import catagtory from './modules/categtory'
 import newlist from './modules/newlist'
  export default new Vuex.Store({
   state: {
@@ -698,8 +698,8 @@ import newlist from './modules/newlist'
 
 ```js
 state: {
-    catagtory: [],
-    currentCatagtory: ''
+    categtory: [],
+    currentCategtory: ''
 }
 ```
 
@@ -707,11 +707,11 @@ state: {
 
 ```js
 mutations: {
-  updateCatagtory (state, payload) {
+  updateCategtory (state, payload) {
       state.catagtory = payload // 更新分类数据
    },
-   updateCurrentCatagtory (state, payload) {
-      state.currentCatagtory = payload
+   updateCurrentCategtory (state, payload) {
+      state.currentCategtory = payload
    }
 }
 ```
@@ -731,8 +731,8 @@ export default new Vuex.Store({
     newlist
   },
   getters: {
-    catagtory: state => state.catagtory.catagtory, // 建立快捷访问
-    currentCatagtory: state => state.catagtory.currentCatagtory
+    categtory: state => state.catagtory.categtory, // 建立快捷访问
+    currentCategtory: state => state.catagtory.currentCategtory
   }
 })
 ```
@@ -760,7 +760,7 @@ computed: {
 
 ```js
   actions: {
-    async  getCatagtory (context) {
+    async  getCategtory (context) {
       const { data: { data: { channels } } } = await                  axios.get('http://ttapi.research.itcast.cn/app/v1_0/channels')
       context.commit('updateCatagtory', channels)
       context.commit('updateCurrentCatagtory', channels[0].id)
