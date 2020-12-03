@@ -731,7 +731,7 @@ export default new Vuex.Store({
     newlist
   },
   getters: {
-    categtory: state => state.catagtory.categtory, // 建立快捷访问
+    categtory: state => state.categtory.categtory, // 建立快捷访问
     currentCategtory: state => state.catagtory.currentCategtory
   }
 })
@@ -786,7 +786,7 @@ export default {
 **点击分类时，触发分类切换**
 
 ```vue
- <li @click="$store.commit('catagtory/updateCurrentCatagtory', item.id)" :class="{ select: currentCatagtroy === item.id }" v-for="item in catagtory"  :key="item.id">{{ item.name }}</li>
+ <li @click="$store.commit('categtory/updateCurrentCategtory', item.id)" :class="{ select: currentCatagtroy === item.id }" v-for="item in catagtory"  :key="item.id">{{ item.name }}</li>
 
 ```
 
@@ -805,10 +805,10 @@ state: {
 ```js
   mutations: {
     // payload 载荷  { 1: [], 2: [], 3: [], 4}
-    updateList (state, { currentCatagtory, list }) {
+    updateList (state, { currentCategtory, list }) {
       // 不是响应式的
       // state.allData[currentCatagtory] = list // 这样做事大错特错第  感觉不到变化 就不会通知组件
-      state.allData = { ...state.allData, [currentCatagtory]: list }
+      state.allData = { ...state.allData, [currentCategtory]: list }
       // 这句代码的含义 就相当于 在一个新的对象后面追加了一个属性  更新某个属性的内容
     }
   },
